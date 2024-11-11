@@ -155,10 +155,6 @@ uint8_t smf_s5c_handle_create_session_request(
         cause_value = OGS_GTP2_CAUSE_CONDITIONAL_IE_MISSING;
     }
 
-    if (!ogs_diam_app_connected(OGS_DIAM_GX_APPLICATION_ID)) {
-        ogs_error("No Gx Diameter Peer");
-        cause_value = OGS_GTP2_CAUSE_REMOTE_PEER_NOT_RESPONDING;
-    }
     switch (sess->gtp_rat_type) {
     case OGS_GTP2_RAT_TYPE_EUTRAN:
         if (req->bearer_contexts_to_be_created[0].
