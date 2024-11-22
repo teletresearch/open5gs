@@ -110,11 +110,6 @@ uint8_t smf_gn_handle_create_pdp_context_request(
         cause_value = OGS_GTP1_CAUSE_MANDATORY_IE_MISSING;
     }
 
-    if (!ogs_diam_app_connected(OGS_DIAM_GX_APPLICATION_ID)) {
-        ogs_error("No Gx Diameter Peer");
-        cause_value = OGS_GTP1_CAUSE_NO_RESOURCES_AVAILABLE;
-    }
-
     if (cause_value != OGS_GTP1_CAUSE_REQUEST_ACCEPTED)
         return cause_value;
 
@@ -308,11 +303,6 @@ uint8_t smf_gn_handle_delete_pdp_context_request(
         ogs_gtp1_delete_pdp_context_request_t *req)
 {
     ogs_debug("Delete PDP Context Request");
-
-    if (!ogs_diam_app_connected(OGS_DIAM_GX_APPLICATION_ID)) {
-        ogs_error("No Gx Diameter Peer");
-        return OGS_GTP1_CAUSE_NO_RESOURCES_AVAILABLE;
-    }
 
     /* PCO */
     if (req->protocol_configuration_options.presence) {
